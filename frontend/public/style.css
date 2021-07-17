@@ -1,0 +1,20 @@
+main{
+  min-height: 80vh;
+}
+.card:hover{
+  background-color: #f5fcc2;
+  transform: scale(1.05);
+  transition-property: all;
+  transition: 0.5s;
+}
+.brandName{
+  text-decoration: none;
+}
+
+.xyz{
+    justify-content : flex-end;
+}
+
+.product-rating{
+  margin : 20px 0;
+}
