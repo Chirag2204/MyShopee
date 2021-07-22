@@ -8,7 +8,7 @@ const Header = () => {
       <Navbar bg="primary" variant="dark" expand="lg" collapeOnSelect>
         <Container>
           <LinkContainer to="/">
-            <Navbar.Brand className="brandName" >MyShopee</Navbar.Brand>
+            <Navbar.Brand className="brandName"><i className="fab fa-shopify"></i>MyShopee</Navbar.Brand>
           </LinkContainer>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav" class="xyz" >

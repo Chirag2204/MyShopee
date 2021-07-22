@@ -2,6 +2,7 @@ import React from "react";
 import { Card } from "react-bootstrap";
 import Rating from "./Rating";
 import { Link } from "react-router-dom";
+
 function ProductCard(props) {
   return (
     <Card style={{ width: "320px", height: "500px" }} className="card my-3 p-3 rounded">

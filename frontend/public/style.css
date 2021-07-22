@@ -6,6 +6,7 @@ main{
   transform: scale(1.05);
   transition-property: all;
   transition: 0.5s;
+  box-shadow: 5px 10px 8px #888888;
 }
 .brandName{
   text-decoration: none;
