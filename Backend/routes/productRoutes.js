@@ -11,7 +11,7 @@ import asyncHandler from 'express-async-handler'
 
 router.get("/", asyncHandler(async (req, res) => {
     const products = await Product.find({});
-
+    // throw new Error("Some Error Occured")
     res.json(products);
 }))
 
@@ -22,6 +22,7 @@ router.get("/", asyncHandler(async (req, res) => {
 
 router.get("/:id", asyncHandler(async (req, res) => {
     const product = await Product.findById(req.params.id);
+
 
     if (product) {
         res.json(product);
