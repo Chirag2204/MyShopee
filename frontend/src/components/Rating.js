@@ -51,7 +51,7 @@ function Rating(props) {
                     }
                 ></i>
             </span>
-            <span>{props.text && props.text} reviews</span>
+            <span>{props.text} reviews</span>
         </div>
     )
 }
@@ -60,8 +60,8 @@ Rating.defaultProps = {
 }
 
 Rating.propTypes = {
-    rating: PropTypes.string.isRequired,
-    text: PropTypes.string.isRequired,
+    rating: PropTypes.number.isRequired,
+    text: PropTypes.number.isRequired,
     color: PropTypes.string
 }
 

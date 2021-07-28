@@ -11,6 +11,7 @@ function HomeScreen() {
     const productList = useSelector(state => state.productList)
     console.log(productList);
     const { loading, error, products } = productList
+    console.log(products);
 
     useEffect(() => {
         dispatch(listProduct());
@@ -32,7 +33,7 @@ function HomeScreen() {
                                 description={product.desciption}
                                 price={product.price}
                                 rating={product.rating}
-                                numofreviews={product.numofreviews} />
+                                numOfReviews={product.numOfReviews} />
                         </Col>
                     ))
                     }

@@ -21,7 +21,7 @@ function ProductCard(props) {
         <Card.Text as="div">
           <Rating
             rating={props.rating}
-            text={props.numofreviews}
+            text={props.numOfReviews}
             color="#e3ca09"
           />
         </Card.Text>

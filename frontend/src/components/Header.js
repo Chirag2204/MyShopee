@@ -16,10 +16,10 @@ const Header = () => {
               <LinkContainer to="/login">
                 <Nav.Link ><i class="fas fa-sign-in-alt"></i>Login</Nav.Link>
               </LinkContainer>
-              <LinkContainer to="/login">
+              <LinkContainer to="/signup">
                 <Nav.Link to="/signup"><i className="fas fa-user"></i>SignUp</Nav.Link>
               </LinkContainer>
-              <LinkContainer to="/login">
+              <LinkContainer to="/cart">
                 <Nav.Link to="/cart"><i className="fas fa-shopping-cart"></i>Cart</Nav.Link>
               </LinkContainer>
             </Nav>
