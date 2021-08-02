@@ -1,36 +1,12 @@
 import express from 'express'
-import Product from '../models/productmodel.js'
+import { getProducts } from '../controllers/productController.js';
+import { getProductById } from '../controllers/productController.js';
+
 const router = express.Router();
-import asyncHandler from 'express-async-handler'
 
 
-//asyncHandler is used to handle exceptions in asynchronous methods
-//@desc To fetch all products
-//@route /api/products
-//access Public
+router.route("/").get(getProducts)
 
-router.get("/", asyncHandler(async (req, res) => {
-    const products = await Product.find({});
-    // throw new Error("Some Error Occured")
-    res.json(products);
-}))
-
-//@desc To fetch a particular product
-//@route /api/products/:id
-//access Public
-
-
-router.get("/:id", asyncHandler(async (req, res) => {
-    const product = await Product.findById(req.params.id);
-
-
-    if (product) {
-        res.json(product);
-    } else {
-        res.status(404)
-        throw new Error(`Product Not Found`)
-    }
-
-}))
+router.route("/:id").get(getProductById)
 
 export default router;
