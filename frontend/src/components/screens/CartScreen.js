@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Row, Col, ListGroup, Image, FormControl, Button } from 'react-bootstrap'
-import { Link } from 'react-router-bootstrap'
+import { Link } from 'react-router-dom'
 import Message from '../Message'
 import { addToCart, removeFromCart } from '../../actions/cartActions'
 
@@ -32,7 +32,7 @@ const CartScreen = ({ match, location, history }) => {
 
     return (
         <Row>
-            {cartItems.length === 0 ? (<Message>Your Cart is Empty </Message>) : (
+            {cartItems.length === 0 ? (<Message>Your Cart is Empty <Link to='/' variant='warning'>Shop Here</Link> </Message>) : (
                 <Row>
                     <Col md={8}>
                         <ListGroup>
@@ -43,7 +43,7 @@ const CartScreen = ({ match, location, history }) => {
                                             <Image src={item.image} alt={item.name} fluid rounded style={{ width: '50px', height: '70px' }}></Image>
                                         </Col>
                                         <Col md={3}>
-                                            {item.name}
+                                            <Link to={`/product/${item.product}`}>{item.name}</Link>
                                         </Col>
                                         <Col md={2}>${item.price}</Col>
                                         <Col md={2}>
@@ -88,8 +88,9 @@ const CartScreen = ({ match, location, history }) => {
                         </ListGroup>
                     </Col>
                 </Row>
-            )}
-        </Row>
+            )
+            }
+        </Row >
     )
 }
 
