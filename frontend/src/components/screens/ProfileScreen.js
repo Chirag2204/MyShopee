@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react'
-import { Row, Col, Form, Button } from 'react-bootstrap'
+import { Row, Col, Form, Button, Table } from 'react-bootstrap'
+import { LinkContainer } from 'react-router-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { getUserDetails, updateUserProfile } from '../../actions/userActions'
 import Message from '../Message'
 import Loader from '../Loader'
+import { listMyOrders } from '../../actions/orderActions'
 
 const ProfileScreen = ({ location, history }) => {
     const [name, setName] = useState('')
@@ -21,6 +23,8 @@ const ProfileScreen = ({ location, history }) => {
     const { userInfo } = userLogin
     const userProfileUpdate = useSelector(state => state.userProfileUpdate)
     const { success } = userProfileUpdate
+    const myOrderList = useSelector(state => state.myOrderList)
+    const { loading: loadingOrders, error: errorOrders, orders = [] } = myOrderList
 
     useEffect(() => {
         if (!userInfo) {
@@ -28,6 +32,7 @@ const ProfileScreen = ({ location, history }) => {
         } else {
             if (!user?.name) {
                 dispatch(getUserDetails('profile'))
+                dispatch(listMyOrders())
             } else {
                 setName(user.name)
                 setEmail(user.email)
@@ -49,7 +54,7 @@ const ProfileScreen = ({ location, history }) => {
 
     return (
         <Row>
-            <Col md={4}>
+            <Col md={3} >
                 <h2>User Profile</h2>
                 {error && <Message variant='danger'>{error}</Message>}
                 {message && <Message variant='danger'>{message}</Message>}
@@ -75,8 +80,39 @@ const ProfileScreen = ({ location, history }) => {
                     <Button type='submit' variant='primary' onClick={submitHandler}>Update</Button>
                 </Form>
             </Col>
-            <Col md={8}>
+            {/* <Col md={3}></Col> */}
+            <Col md={9}>
                 <h2>My Orders</h2>
+                {loadingOrders ? <Loader /> : errorOrders ? <Message variant='danger'>{errorOrders}</Message> : (
+                    <Table striped bordered hovered responsive className='table-sm'>
+                        <thead>
+                            <tr>
+                                <th>Order Id</th>
+                                <th>Date</th>
+                                <th>Total Amount</th>
+                                <th>Paid Status</th>
+                                <th>Delivered</th>
+                                <th>  </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {orders.map(order => (
+                                <tr key={order._id}>
+                                    <td>{order._id}</td>
+                                    <td>{order.createdAt.substring(0, 10)}</td>
+                                    <td>${order.totalPrice}</td>
+                                    <td>{order.isPaid ? <Message variant='success'>Paid</Message> : <Message variant='danger'>Not Paid</Message>}</td>
+                                    <td>{order.isDelivered ? <Message variant='success'>Delivered</Message> : <Message variant='danger'>Not Delivered</Message>}</td>
+                                    <td>
+                                        <LinkContainer to={`/order/${order._id}`}>
+                                            <Button variant='warning' className='btn-sm'>Details</Button>
+                                        </LinkContainer>
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </Table>
+                )}
             </Col>
         </Row >
     )

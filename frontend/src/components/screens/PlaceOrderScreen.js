@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import Message from '../Message'
 import { CheckoutSteps } from '../CheckoutSteps'
 import { createOrder } from '../../actions/orderActions'
+import { ORDER_CREATE_REQUEST } from '../../constants/orderConstants'
 
 export const PlaceOrderScreen = ({ history }) => {
     const dispatch = useDispatch()
@@ -17,8 +18,7 @@ export const PlaceOrderScreen = ({ history }) => {
     cart.totalPrice = cart.itemsPrice + cart.shippingPrice
 
     const orderCreate = useSelector(state => state.orderCreate)
-    console.log(orderCreate)
-    const { order, success, error } = orderCreate
+    const { order = {}, success, error } = orderCreate
 
 
     useEffect(() => {
@@ -27,11 +27,7 @@ export const PlaceOrderScreen = ({ history }) => {
         }
     }, [success, order, history])
 
-    // useEffect(() => () => {
-    //     dispatch({ type: ORDER_CREATE_REQUEST })
-    //     console.log('unmount')
-    // }, [])
-
+    
     const submitHandler = () => {
         dispatch(createOrder({
             orderItems: cart.cartItems,

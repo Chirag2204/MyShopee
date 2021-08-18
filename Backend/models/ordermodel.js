@@ -18,13 +18,14 @@ const orderSchema = mongoose.Schema({
         address: { type: String, required: true },
         city: { type: String, required: true },
         country: { type: String, required: true },
-        pincode: { type: String, required: true }
+        pincode: { type: String, required: true },
+        mobileNo: { type: String, required: true }
     },
     paymentMethod: {
         type: String,
         required: true
     },
-    payemntResult: {
+    payment: {
         id: { type: String },
         status: { type: String },
         update_time: { type: String },
