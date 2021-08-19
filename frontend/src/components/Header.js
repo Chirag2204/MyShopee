@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Navbar, Nav, NavDropdown } from "react-bootstrap"
+import { Container, Navbar, Nav, NavDropdown, useAccordionToggle } from "react-bootstrap"
 import { LinkContainer } from "react-router-bootstrap";
 import { useSelector, useDispatch } from 'react-redux'
 import { logout } from "../actions/userActions";
@@ -40,10 +40,23 @@ const Header = () => {
                   </LinkContainer>
                 </>)}
 
-
               <LinkContainer to="/cart">
                 <Nav.Link to="/cart"><i className="fas fa-shopping-cart"></i>Cart</Nav.Link>
               </LinkContainer>
+              {userInfo && userInfo.isAdmin && (
+                <NavDropdown title='Admin'>
+                  <LinkContainer to='/admin/userlist'>
+                    <NavDropdown.Item>Users</NavDropdown.Item>
+                  </LinkContainer>
+                  <LinkContainer to='/admin/productlist'>
+                    <NavDropdown.Item>Products</NavDropdown.Item>
+                  </LinkContainer>
+                  <LinkContainer to='/admin/orderlist'>
+                    <NavDropdown.Item>Orders</NavDropdown.Item>
+                  </LinkContainer>
+
+                </NavDropdown>
+              )}
             </Nav>
           </Navbar.Collapse>
         </Container>

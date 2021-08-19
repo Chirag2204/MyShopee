@@ -15,7 +15,7 @@ export const PlaceOrderScreen = ({ history }) => {
 
     cart.shippingPrice = cart.itemsPrice > 100 ? 0 : 20
 
-    cart.totalPrice = cart.itemsPrice + cart.shippingPrice
+    cart.totalPrice = (cart.itemsPrice + cart.shippingPrice).toFixed(2)
 
     const orderCreate = useSelector(state => state.orderCreate)
     const { order = {}, success, error } = orderCreate
@@ -27,7 +27,7 @@ export const PlaceOrderScreen = ({ history }) => {
         }
     }, [success, order, history])
 
-    
+
     const submitHandler = () => {
         dispatch(createOrder({
             orderItems: cart.cartItems,

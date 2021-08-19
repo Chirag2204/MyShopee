@@ -38,8 +38,8 @@ const ProfileScreen = ({ location, history }) => {
                 setEmail(user.email)
             }
         }
+    }, [dispatch, orders, success, userInfo, user])
 
-    }, [dispatch, userInfo, history, user])
 
     const submitHandler = (e) => {
         e.preventDefault()
