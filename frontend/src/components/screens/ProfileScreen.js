@@ -38,7 +38,7 @@ const ProfileScreen = ({ location, history }) => {
                 setEmail(user.email)
             }
         }
-    }, [dispatch, orders, success, userInfo, user])
+    }, [dispatch, history, orders, success, userInfo, user])
 
 
     const submitHandler = (e) => {
@@ -48,7 +48,7 @@ const ProfileScreen = ({ location, history }) => {
             setMessage('Passwords Do Not match')
         } else {
             dispatch(updateUserProfile({ id: user._id, name, email, password }))
-            //DISPATCH PROFILE
+
         }
     }
 

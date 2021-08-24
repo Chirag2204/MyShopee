@@ -101,9 +101,6 @@ export const userDeleteReducer = (state = {}, action) => {
         case USER_DELETE_FAIL:
             return { loading: false, error: action.payload }
 
-        case USER_LIST_RESET:
-            return { users: [] }
-
         default:
             return state
     }

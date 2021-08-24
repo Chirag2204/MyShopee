@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { Col, Row, ListGroup, Image, Card } from 'react-bootstrap'
+import { Col, Row, ListGroup, Image, Card, Button } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { PayPalButton } from 'react-paypal-button-v2'
 import Message from '../Message'
 import Loader from '../Loader'
-import { getOrderDetails, payOrder } from '../../actions/orderActions'
-import { ORDER_DETAILS_RESET, ORDER_PAY_RESET } from '../../constants/orderConstants'
+import { deliverOrder, getOrderDetails, payOrder } from '../../actions/orderActions'
+import { ORDER_DELIVER_RESET, ORDER_DETAILS_RESET, ORDER_PAY_RESET } from '../../constants/orderConstants'
 import axios from 'axios'
 
 export const OrderScreen = ({ match }) => {
@@ -15,12 +15,17 @@ export const OrderScreen = ({ match }) => {
     console.log(orderId);
 
     const dispatch = useDispatch()
+    const userLogin = useSelector(state => state.userLogin)
+    const { userInfo } = userLogin
 
     const orderDetails = useSelector(state => state.orderDetails)
     const { order, loading, error } = orderDetails
 
     const orderPay = useSelector(state => state.orderPay)
     const { loading: loadingPay, success: successPay } = orderPay
+
+    const orderDeliver = useSelector(state => state.orderDeliver)
+    const { loading: loadingDeliver, success: successDeliver } = orderDeliver
 
 
     useEffect(() => {
@@ -35,30 +40,21 @@ export const OrderScreen = ({ match }) => {
             }
             document.body.appendChild(script)
         }
-        if (!order || successPay) {
-            console.log('log1')
+        if (!order || successPay || successDeliver) {
             dispatch({ type: ORDER_PAY_RESET })
+            dispatch({ type: ORDER_DELIVER_RESET })
             dispatch(getOrderDetails(orderId))
         } else if (!order.isPaid) {
             if (!window.paypal) {
-                console.log('log2')
                 addPaypalScript()
             }
             else {
-                console.log('log3')
                 setSdkReady(true)
             }
         }
 
 
-    }, [dispatch, orderId, order, successPay])
-
-    useEffect(() => () => {
-        dispatch({ type: ORDER_DETAILS_RESET })
-        console.log('unmount')
-    }, [])
-
-
+    }, [dispatch, match, orderId, order, successPay, userInfo, successDeliver])
 
 
     if (!loading && order) {
@@ -71,6 +67,11 @@ export const OrderScreen = ({ match }) => {
         dispatch(payOrder(orderId, paymentResult))
     }
 
+    const markAsDelivererd = () => {
+        dispatch(deliverOrder(order))
+    }
+
+
     return (
         <>
             {loading ? <Loader /> : error ? (<Message variant='danger'>Error Occured While Placing Order</Message>) : (
@@ -78,7 +79,7 @@ export const OrderScreen = ({ match }) => {
                     <Row>
                         <Col sm={9}>
                             <ListGroup variant='flush'>
-
+                                {loadingDeliver && <Loader />}
                                 <ListGroup.Item>
                                     <h2>Shipping Details</h2>
                                     <p>
@@ -123,7 +124,7 @@ export const OrderScreen = ({ match }) => {
                         <Col sm={3}>
                             <h2>Order Summary</h2>
                             <Card>
-                                <ListGroup >
+                                <ListGroup>
 
                                     <ListGroup.Item>
                                         <Row>
@@ -151,15 +152,17 @@ export const OrderScreen = ({ match }) => {
                                             )}
                                         </ListGroup.Item>
                                     )}
+                                    {userInfo.isAdmin && order.isPaid && !order.isDelivered && (
+                                        <ListGroup.Item>
+                                            <Button className='btn btn-block' onClick={markAsDelivererd}>Mark as Delivered</Button>
+                                        </ListGroup.Item>
+                                    )}
                                 </ListGroup>
                             </Card>
-
                         </Col>
                     </Row>
-                )
-
-            )}
-
+                ))
+            }
         </>
     )
 }
