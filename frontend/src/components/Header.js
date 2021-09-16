@@ -1,8 +1,10 @@
 import React from "react";
-import { Container, Navbar, Nav, NavDropdown, useAccordionToggle } from "react-bootstrap"
+import { Container, Navbar, Nav, NavDropdown } from "react-bootstrap"
+import { Route } from 'react-router-dom'
 import { LinkContainer } from "react-router-bootstrap";
 import { useSelector, useDispatch } from 'react-redux'
 import { logout } from "../actions/userActions";
+import { SearchBox } from "./SearchBox";
 
 const Header = () => {
 
@@ -16,11 +18,16 @@ const Header = () => {
     <header>
       <Navbar bg="primary" variant="dark" expand="lg" collapeOnSelect>
         <Container>
+
           <LinkContainer to="/">
             <Navbar.Brand className="brandName"><i className="fab fa-shopify"></i>MyShopee</Navbar.Brand>
+
           </LinkContainer>
+
+
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav" class="xyz" >
+          <Navbar.Collapse id="basic-navbar-nav" className="xyz" >
+            <Route render={({ history }) => <SearchBox history={history} />} />
             <Nav>
               {userInfo ?
                 (
@@ -61,7 +68,7 @@ const Header = () => {
           </Navbar.Collapse>
         </Container>
       </Navbar>
-    </header>
+    </header >
   )
 }
 

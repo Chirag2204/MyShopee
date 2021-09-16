@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import Message from '../Message'
 import Loader from '../Loader'
 import { listOrders } from '../../actions/orderActions'
+import { Meta } from '../Meta'
 
 const OrderListScreen = ({ location, history }) => {
     const dispatch = useDispatch()
@@ -26,6 +27,7 @@ const OrderListScreen = ({ location, history }) => {
 
     return (
         <>
+            <Meta title='Admin Screen' />
             <h2>Orders List</h2>
             {loading ? <Loader /> : error ? <Message variant='danger'>{error}</Message> : (
                 <Table striped bordered hovered responsive className='table-sm'>

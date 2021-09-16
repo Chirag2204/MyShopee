@@ -1,17 +1,18 @@
 import React from "react";
-import {Container,Row,Col} from "react-bootstrap";
-const Footer = ()=>{
-  return(
+import { Container, Row, Col } from "react-bootstrap";
+const Footer = () => {
+  return (
     <div>
       <Container>
         <Row>
-         <Col className="text-center py-3">
-          Copyright &copy; MyShopee
-         </Col>
-       </Row>
-       </Container>
+          <Col className="text-center py-3">
+            Copyright &copy; MyShopee
+            Developed By (¬‿¬) CC (¬‿¬)
+          </Col>
+        </Row>
+      </Container>
     </div>
-    )
+  )
 }
 
 export default Footer;

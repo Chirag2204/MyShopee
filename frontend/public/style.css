@@ -2,7 +2,7 @@ main{
   min-height: 80vh;
 }
 .card:hover{
-  background-color: #f5fcc2;
+  
   transform: scale(1.05);
   transition-property: all;
   transition: 0.5s;
@@ -18,4 +18,36 @@ main{
 
 .product-rating{
   margin : 20px 0;
+}
+
+.carousel{
+  text-align: center;
+  height: 400px;
+}
+
+.carousel-item-next,
+.carousel-item-previous,
+.carousel-item-active{
+  display: flex;
+  text-align: center;
+ 
+}
+.carousel-caption{
+  position: absolute; 
+  top: 0
+}
+
+.carousel-caption-h2{
+  color:white;
+  margin: 10px;
+}
+.carousel img{
+  height : 300px;
+  width:300px;
+  border-radius : 50%;
+  margin : 70px;
+}
+.carousel a{
+  
+  margin : 0 auto;
 }

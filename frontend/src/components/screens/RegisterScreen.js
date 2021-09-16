@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { register } from '../../actions/userActions'
 import Message from '../Message'
 import Loader from '../Loader'
+import { Meta } from '../Meta'
 
 const RegisterScreen = ({ location, history }) => {
     const [name, setName] = useState('')
@@ -38,6 +39,7 @@ const RegisterScreen = ({ location, history }) => {
     }
     return (
         <FormContainer>
+            <Meta title='Register' />
             <h1 >Register</h1>
             {error && <Message variant='danger'>{error}</Message>}
             {message && <Message variant='danger'>{message}</Message>}

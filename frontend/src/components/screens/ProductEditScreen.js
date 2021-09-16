@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import Message from '../Message'
 import Loader from '../Loader'
 import { listProductDetails, updateProduct } from '../../actions/productActions'
-import { PRODUCT_UPDATE_RESET } from '../../constants/productConstants'
+import { PRODUCT_DETAILS_RESET, PRODUCT_UPDATE_RESET } from '../../constants/productConstants'
 
 
 const ProductEditScreen = ({ match, history }) => {
@@ -33,12 +33,17 @@ const ProductEditScreen = ({ match, history }) => {
     const { loading: loadingUpdate, success: successUpdate, error: errorUpdate } = productUpdate
 
     useEffect(() => {
+        //debugger
         if (successUpdate) {
-            dispatch({ type: PRODUCT_UPDATE_RESET })
             history.push('/admin/productlist')
         } else {
-            if (!product.name || product._id !== productId) {
+            //productName undefined && isLoading undefined : dispatch
+            //productName undefined && isLoading false : redirect to list
+
+            if (!product?.name) {
                 dispatch(listProductDetails(productId))
+            }
+            else if ( !product?.name || product?._id !== productId) {
                 history.push('/admin/productlist')
             } else {
                 setName(product.name)
@@ -51,9 +56,14 @@ const ProductEditScreen = ({ match, history }) => {
                 setNumOfReviews(product.numOfReviews)
             }
         }
-
+        //   return dispatch
 
     }, [dispatch, history, productId, product, successUpdate])
+
+    useEffect(() => () => {
+        dispatch({ type: PRODUCT_UPDATE_RESET })
+        dispatch({ type: PRODUCT_DETAILS_RESET })
+    }, [])
 
     const submitHandler = (e) => {
         e.preventDefault()

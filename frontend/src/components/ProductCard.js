@@ -24,6 +24,7 @@ function ProductCard(props) {
             text={props.numOfReviews}
             color="#e3ca09"
           />
+          {props.numOfReviews} reviews
         </Card.Text>
         <Card.Text as="h3">${props.price}</Card.Text>
       </Card.Body>

@@ -12,7 +12,6 @@ import axios from 'axios'
 export const OrderScreen = ({ match }) => {
     const [sdkReady, setSdkReady] = useState(false)
     const orderId = match.params.id
-    console.log(orderId);
 
     const dispatch = useDispatch()
     const userLogin = useSelector(state => state.userLogin)
@@ -29,6 +28,8 @@ export const OrderScreen = ({ match }) => {
 
 
     useEffect(() => {
+
+
         const addPaypalScript = async () => {
             const { data: clientId } = await axios.get('/api/config/paypal')
             const script = document.createElement('script')
@@ -41,8 +42,6 @@ export const OrderScreen = ({ match }) => {
             document.body.appendChild(script)
         }
         if (!order || successPay || successDeliver) {
-            dispatch({ type: ORDER_PAY_RESET })
-            dispatch({ type: ORDER_DELIVER_RESET })
             dispatch(getOrderDetails(orderId))
         } else if (!order.isPaid) {
             if (!window.paypal) {
@@ -55,6 +54,10 @@ export const OrderScreen = ({ match }) => {
 
 
     }, [dispatch, match, orderId, order, successPay, userInfo, successDeliver])
+
+    useEffect(() => () => {
+        dispatch({ type: ORDER_DETAILS_RESET })
+    }, [dispatch])
 
 
     if (!loading && order) {

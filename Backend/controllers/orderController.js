@@ -28,7 +28,6 @@ export const addOrderItems = asyncHandler(async (req, res) => {
 
 
         const createdOrder = await order.save()
-        console.log('At bACKENBD' + createdOrder)
         res.status(200).json(createdOrder)
     }
 })
@@ -78,7 +77,6 @@ export const updateOrdertoPaid = asyncHandler(async (req, res) => {
 
 export const getMyOrders = asyncHandler(async (req, res) => {
     const orders = await Order.find({ user: req.user._id })
-    console.log(orders)
     res.json(orders)
 })
 
@@ -88,7 +86,6 @@ export const getMyOrders = asyncHandler(async (req, res) => {
 
 export const getOrders = asyncHandler(async (req, res) => {
     const orders = await Order.find({}).populate('user', 'id name')
-    console.log(orders)
     res.json(orders)
 })
 

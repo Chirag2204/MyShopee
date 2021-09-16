@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import Message from '../Message'
 import { CheckoutSteps } from '../CheckoutSteps'
 import { createOrder } from '../../actions/orderActions'
-import { ORDER_CREATE_REQUEST } from '../../constants/orderConstants'
+import { ORDER_CREATE_RESET } from '../../constants/orderConstants'
 
 export const PlaceOrderScreen = ({ history }) => {
     const dispatch = useDispatch()
@@ -26,6 +26,11 @@ export const PlaceOrderScreen = ({ history }) => {
             history.push(`/order/${order._id}`)
         }
     }, [success, order, history])
+
+    useEffect(() => () => {
+        console.log('unmount');
+        dispatch({ type: ORDER_CREATE_RESET })
+    }, [dispatch])
 
 
     const submitHandler = () => {

@@ -7,6 +7,7 @@ import { getUserDetails, register, updateUser } from '../../actions/userActions'
 import Message from '../Message'
 import Loader from '../Loader'
 import { USER_UPDATE_RESET } from '../../constants/userConstants'
+import { Meta } from '../Meta'
 
 const EditUserScreen = ({ match, history }) => {
 
@@ -48,6 +49,7 @@ const EditUserScreen = ({ match, history }) => {
     }
     return (
         <>
+            <Meta title='Admin Screen'/>
             <Link to='/admin/userlist' className='btn btn-light mb-3'>
                 Go Back
             </Link>

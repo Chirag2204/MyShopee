@@ -51,7 +51,6 @@ function Rating(props) {
                     }
                 ></i>
             </span>
-            <span>{props.text} reviews</span>
         </div>
     )
 }
