@@ -10,7 +10,7 @@ import { notFound, errorHandler } from './middleware/errorMiddleware.js';
 
 const app = express();
 
-if (process.env.NODE_ENV === 'development') {
+if (process.env.NODE_ENV === 'Development') {
     app.use(morgan('dev'))
 }
 
