@@ -51,3 +51,7 @@ main{
   
   margin : 0 auto;
 }
+.footer{
+  background-color: grey;
+  color:white
+}

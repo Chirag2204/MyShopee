@@ -2,11 +2,12 @@ import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 const Footer = () => {
   return (
-    <div>
+    <div className='footer'>
       <Container>
         <Row>
           <Col className="text-center py-3">
-            Copyright &copy; MyShopee
+            <p>Copyright &copy; MyShopee</p>
+
             Developed By (¬‿¬) CC (¬‿¬)
           </Col>
         </Row>
