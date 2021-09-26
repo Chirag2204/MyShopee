@@ -55,6 +55,10 @@ export const OrderScreen = ({ match }) => {
 
     }, [dispatch, match, orderId, order, successPay, userInfo, successDeliver])
 
+    useEffect(() => {
+        window.scroll(0, 0)
+    }, [])
+
     useEffect(() => () => {
         dispatch({ type: ORDER_DETAILS_RESET })
     }, [dispatch])

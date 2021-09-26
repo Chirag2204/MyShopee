@@ -43,13 +43,17 @@ const EditUserScreen = ({ match, history }) => {
 
     }, [dispatch, user, userId, successUpdate])
 
+    useEffect(() => {
+        window.scroll(0, 0)
+    }, [])
+
     const submitHandler = (e) => {
         e.preventDefault()
         dispatch(updateUser({ _id: userId, name, email, isAdmin }))
     }
     return (
         <>
-            <Meta title='Admin Screen'/>
+            <Meta title='Admin Screen' />
             <Link to='/admin/userlist' className='btn btn-light mb-3'>
                 Go Back
             </Link>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Form, Button, Col } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { savePaymentMethod } from '../../actions/cartActions'
@@ -16,6 +16,10 @@ export const PaymentScreen = ({ history }) => {
     const [paymentMethod, setPaymentMethod] = useState('Paypal')
 
     const dispatch = useDispatch()
+
+    useEffect(() => {
+        window.scroll(0, 0)
+    }, [])
 
     const submitHandler = (e) => {
         e.preventDefault()

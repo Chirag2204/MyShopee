@@ -22,8 +22,11 @@ const CartScreen = ({ match, location, history }) => {
         }
     }, [dispatch, productId, Qty])
 
+    useEffect(() => {
+        window.scroll(0, 0)
+    }, [])
+
     const removeFromCartHandler = (id) => {
-        console.log('Item Removed')
         dispatch(removeFromCart(id))
     }
 

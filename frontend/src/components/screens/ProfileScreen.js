@@ -41,6 +41,10 @@ const ProfileScreen = ({ location, history }) => {
         }
     }, [dispatch, history, orders, success, userInfo, user])
 
+    useEffect(() => {
+        window.scroll(0, 0)
+    }, [])
+
 
     const submitHandler = (e) => {
         e.preventDefault()

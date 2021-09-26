@@ -15,13 +15,15 @@ function HomeScreen({ match }) {
 
     const dispatch = useDispatch();
     const productList = useSelector(state => state.productList)
-    console.log(productList);
     const { loading, error, products, page, pages } = productList
-    console.log(products);
 
     useEffect(() => {
         dispatch(listProduct(keyword, pageNumber));
     }, [dispatch, keyword, pageNumber])
+
+    useEffect(() => {
+        window.scroll(0, 0)
+    }, [])
 
     return (
         <>

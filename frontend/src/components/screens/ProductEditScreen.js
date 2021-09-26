@@ -43,7 +43,7 @@ const ProductEditScreen = ({ match, history }) => {
             if (!product?.name) {
                 dispatch(listProductDetails(productId))
             }
-            else if ( !product?.name || product?._id !== productId) {
+            else if (!product?.name || product?._id !== productId) {
                 history.push('/admin/productlist')
             } else {
                 setName(product.name)
@@ -63,6 +63,10 @@ const ProductEditScreen = ({ match, history }) => {
     useEffect(() => () => {
         dispatch({ type: PRODUCT_UPDATE_RESET })
         dispatch({ type: PRODUCT_DETAILS_RESET })
+    }, [dispatch])
+
+    useEffect(() => {
+        window.scroll(0, 0)
     }, [])
 
     const submitHandler = (e) => {

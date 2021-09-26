@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Form, Button } from 'react-bootstrap'
 import FormContainer from '../FormContainer'
 import { useDispatch, useSelector } from 'react-redux'
@@ -24,6 +24,10 @@ export const ShippingScreen = ({ history }) => {
         dispatch(saveShippingDetails({ address, city, pincode, country, mobileNo }))
         history.push('/payment')
     }
+
+    useEffect(() => {
+        window.scroll(0, 0)
+    }, [])
 
     return (
         <>

@@ -27,6 +27,11 @@ const RegisterScreen = ({ location, history }) => {
         }
 
     }, [userInfo, redirect, history])
+
+    useEffect(() => {
+        window.scroll(0, 0)
+    }, [])
+
     const submitHandler = (e) => {
         e.preventDefault()
         console.log(password + "," + confirmPassword);

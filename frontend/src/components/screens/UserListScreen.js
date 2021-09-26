@@ -28,6 +28,10 @@ export const UserListScreen = ({ history }) => {
 
     }, [dispatch, history, userInfo, success])
 
+    useEffect(() => {
+        window.scroll(0, 0)
+    }, [])
+
     const deleteHandler = (id) => {
         if (window.confirm('Are You Sure To Delete The User?')) {
             dispatch(deleteUser(id))

@@ -28,9 +28,12 @@ export const PlaceOrderScreen = ({ history }) => {
     }, [success, order, history])
 
     useEffect(() => () => {
-        console.log('unmount');
         dispatch({ type: ORDER_CREATE_RESET })
     }, [dispatch])
+
+    useEffect(() => {
+        window.scroll(0, 0)
+    }, [])
 
 
     const submitHandler = () => {

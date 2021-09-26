@@ -24,6 +24,10 @@ const OrderListScreen = ({ location, history }) => {
 
     }, [dispatch, history, userInfo])
 
+    useEffect(() => {
+        window.scroll(0, 0)
+    }, [])
+
 
     return (
         <>

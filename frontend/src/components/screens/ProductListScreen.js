@@ -45,6 +45,10 @@ export const ProductListScreen = ({ history, match }) => {
 
     useEffect(() => () => {
         dispatch({ type: PRODUCT_CREATE_RESET })
+    }, [dispatch])
+
+    useEffect(() => {
+        window.scroll(0, 0)
     }, [])
 
     const deleteHandler = (id) => {

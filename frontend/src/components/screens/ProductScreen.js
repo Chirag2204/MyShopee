@@ -46,6 +46,11 @@ function ProductScreen({ history, match }) {
         history.push(`/cart/${match.params.id}?qty=${qty}`)
     }
 
+
+    useEffect(() => {
+        window.scroll(0, 0)
+    }, [])
+
     const submitHandler = () => {
         dispatch(createProductReview(match.params.id, {
             rating, comment
